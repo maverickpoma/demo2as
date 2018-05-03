@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03-may-2018 11:31:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.demo2.models.Usuarios" table="usuarios" catalog="usuariosdb" optimistic-lock="version">
+        <id name="idUsuarios" type="int">
+            <column name="idUsuarios" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombres" type="string">
+            <column name="nombres" length="45" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="45" />
+        </property>
+        <property name="areaDeTrabajo" type="string">
+            <column name="area_de_trabajo" length="45" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
