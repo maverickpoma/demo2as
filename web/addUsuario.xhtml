@@ -8,12 +8,14 @@
     <h:body>
         agregar Usuario
        <h:form>
-            idUsuarios: <h:inputText value="#{usuarioBeans.idUsuarios}"></h:inputText>
+            idUsuario: <h:inputText value="#{usuarioBeans.idUsuarios}"></h:inputText>
             correo: <h:inputText value="#{usuarioBeans.correo}"></h:inputText>
             password: <h:inputText value="#{usuarioBeans.password}"></h:inputText>
             nombres: <h:inputText value="#{usuarioBeans.nombres}"></h:inputText>
             apellidos: <h:inputText value="#{usuarioBeans.apellidos}"></h:inputText>
-            <h:commandButton value="Guardar" action="#{usuarioBeans.addUsuario()}">
+            areaDeTrabajo: <h:inputText value="#{usuarioBeans.areaDeTrabajo}"></h:inputText>
+            <h:commandButton value="Guardar" action="#{usuarioBeans.addUsuario()}"></h:commandButton>
+       </h:form>
     </h:body>
 </html>
 
