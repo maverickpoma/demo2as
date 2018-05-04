@@ -129,7 +129,7 @@ public class UsuarioBeans implements Serializable {
 
     public void returnUsuarioById(){
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.findUsuarioByID(getIdUsuarios);
+        Usuarios usuario = usuarioDAO.findUsuarioByID(getIdUsuarios());
         if(usuario != null){
             System.out.println(usuario.getIdUsuarios());
             System.out.println(usuario.getNombres());
@@ -143,15 +143,6 @@ public class UsuarioBeans implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, 
                     new FacesMessage("Alumno no encontrado"));
         }
-    }
-    public String probarConexion() throws NamingException, SQLException{
-        String ret = null;
-        DataSource ds = (DataSource)new InitialContext().lookup("jndi_biblio_conn");
-        try(Connection conn = ds.getConnection()){
-            ret = "default.xhtml";
-        }
-        
-        return ret;
     }
     
     public void updateUsuario(){
