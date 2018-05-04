@@ -6,7 +6,7 @@
 package com.demo2.dao;
 
 import com.demo2.utils.NewHibernateUtil;
-import com.demo2.models.Usuarios;
+import com.demo2.models.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
@@ -14,7 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class UsuarioDAO {
-    public void addUsuario(Usuarios usuario){
+    public void addUsuario(Usuario usuario){
         Transaction tx = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try{
@@ -35,7 +35,7 @@ public class UsuarioDAO {
          Session session = NewHibernateUtil.getSessionFactory().openSession();
          try{
              trns = session.beginTransaction();
-             Usuarios usuario = (Usuarios) session.load(Usuarios.class, new Integer (idUsuario));
+             Usuario usuario = (Usuario) session.load(Usuario.class, new Integer (idUsuario));
              session.delete(usuario);
              session.getTransaction().commit();
          }catch(RuntimeException e){
@@ -46,12 +46,12 @@ public class UsuarioDAO {
          }
     }
     
-    public void updateUsuario(int idUsuario, Usuarios newUsuario){
+    public void updateUsuario(int idUsuario, Usuario newUsuario){
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try{
             trns = session.beginTransaction();
-            Usuarios oldUsuario = (Usuarios) session.load(Usuarios.class, (idUsuario));
+            Usuario oldUsuario = (Usuario) session.load(Usuario.class, (idUsuario));
             oldUsuario.setNombres(newUsuario.getNombres());
             oldUsuario.setApellidos(newUsuario.getApellidos());
             oldUsuario.setAreaDeTrabajo(newUsuario.getAreaDeTrabajo());
@@ -68,8 +68,8 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuarios findUsuarioByID(int idUsuario){
-        Usuarios usuario = null;
+    public Usuario findUsuarioByID(int idUsuario){
+        Usuario usuario = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         try{
@@ -77,7 +77,7 @@ public class UsuarioDAO {
             String queryString = "from Alumno where codigo = :idToFind";
             Query query = session.createQuery(queryString);
             query.setInteger("idToFind", idUsuario);
-            usuario = (Usuarios) query.uniqueResult();
+            usuario = (Usuario) query.uniqueResult();
         }catch(RuntimeException e){
             e.printStackTrace();
         }finally{
@@ -87,13 +87,13 @@ public class UsuarioDAO {
         return usuario;
     }
     
-    public List<Usuarios> listaUsuarioTodos(){
+    public List<Usuario> listaUsuarioTodos(){
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         String hql = " from Libro";        
-        List<Usuarios> listaUsuarios= new ArrayList<>();
+        List<Usuario> listaUsuario= new ArrayList<>();
         try{
             Query query = session.createQuery(hql);
-            listaUsuarios = (List<Usuarios>) query.list();
+            listaUsuario = (List<Usuario>) query.list();
             
         }catch(RuntimeException e){
             e.printStackTrace();
@@ -101,6 +101,6 @@ public class UsuarioDAO {
             session.flush();
             session.close();
         }
-        return listaUsuarios;
+        return listaUsuario;
     }
 }
