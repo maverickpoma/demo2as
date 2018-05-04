@@ -23,6 +23,71 @@ import javax.naming.NamingException;
 @SessionScoped
 public class UsuarioBeans implements Serializable {
 
+    private int idUsuarios;
+     private String nombres;
+     private String apellidos;
+     private String areaDeTrabajo;
+     private String correo;
+     private String password;
+     
+    public UsuarioBeans() {
+  
+    }
+     
+   
+    
+    public void addUsuario(){
+       
+        Usuarios usuario = new Usuarios(nombres, apellidos, areaDeTrabajo, correo, password);
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuarioDAO.addUsuario(usuario);
+        limpiarCampos();
+    }
+
+    public void returnUsuarioById(){
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuarios usuario = usuarioDAO.findUsuarioByID(getIdUsuarios());
+        if(usuario != null){
+            System.out.println(usuario.getIdUsuarios());
+            System.out.println(usuario.getNombres());
+            setIdUsuarios(usuario.getIdUsuarios());
+            setNombres(usuario.getNombres());
+            setApellidos(usuario.getApellidos());
+            setAreaDeTrabajo(usuario.getAreaDeTrabajo());
+            setCorreo(usuario.getCorreo());
+            setPassword(usuario.getPassword());
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage("Alumno no encontrado"));
+        }
+    }
+    
+    public void updateUsuario(){
+        Usuarios newUsuario = new Usuarios(getNombres(), getAreaDeTrabajo(),getApellidos(),getCorreo(),getPassword());       
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuarioDAO.updateUsuario(getIdUsuarios(), newUsuario);
+        
+        FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage("usuario actualizado correctamente"));   
+    }
+    
+    public void deleteUsuario(){
+       UsuarioDAO usuarioDAO = new UsuarioDAO();
+        usuarioDAO.deleteUsuario(idUsuarios);
+        limpiarCampos();
+        FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage("usuario eliminado"));
+    }
+    
+    public void limpiarCampos(){
+        setIdUsuarios(0);
+        setNombres("");
+        setApellidos("");
+        setCorreo("");
+        setAreaDeTrabajo("");
+        setPassword("");
+    }
+    
     /**
      * @return the idUsuarios
      */
@@ -107,76 +172,6 @@ public class UsuarioBeans implements Serializable {
         this.password = password;
     }
 
-    private int idUsuarios;
-     private String nombres;
-     private String apellidos;
-     private String areaDeTrabajo;
-     private String correo;
-     private String password;
-     
-    public UsuarioBeans() {
-  
-    }
-     
-   
-    
-    public void addUsuario(){
-        Usuarios usuario = new Usuarios(idUsuarios, nombres, apellidos, areaDeTrabajo, password, correo);
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.addUsuario(usuario);
-        limpiarCampos();
-    }
-
-    public void returnUsuarioById(){
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuarios usuario = usuarioDAO.findUsuarioByID(getIdUsuarios());
-        if(usuario != null){
-            System.out.println(usuario.getIdUsuarios());
-            System.out.println(usuario.getNombres());
-            setIdUsuarios(usuario.getIdUsuarios());
-            setNombres(usuario.getNombres());
-            setApellidos(usuario.getApellidos());
-            setAreaDeTrabajo(usuario.getAreaDeTrabajo());
-            setCorreo(usuario.getCorreo());
-            setPassword(usuario.getPassword());
-        }else{
-            FacesContext.getCurrentInstance().addMessage(null, 
-                    new FacesMessage("Alumno no encontrado"));
-        }
-    }
-    
-    public void updateUsuario(){
-        Usuarios newUsuario = new Usuarios(getIdUsuarios(), getNombres(), getAreaDeTrabajo(),getApellidos(),getCorreo(),getPassword());       
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.updateUsuario(getIdUsuarios(), newUsuario);
-        
-        FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage("usuario actualizado correctamente"));   
-    }
-    
-    public void deleteUsuario(){
-       UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.deleteUsuario(idUsuarios);
-        limpiarCampos();
-        FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage("usuario eliminado"));
-    }
-    
-    public void limpiarCampos(){
-        setIdUsuarios(0);
-        setNombres("");
-        setApellidos("");
-        setCorreo("");
-        setAreaDeTrabajo("");
-        setPassword("");
-    }
-    
-    
-
-        
-        
-        
-        
-    }
+}
     
 

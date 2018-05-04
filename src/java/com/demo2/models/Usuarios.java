@@ -1,5 +1,5 @@
 package com.demo2.models;
-// Generated 03-may-2018 11:31:48 by Hibernate Tools 4.3.1
+// Generated 04/05/2018 12:05:14 AM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package com.demo2.models;
 public class Usuarios  implements java.io.Serializable {
 
 
-     private int idUsuarios;
+     private Integer idUsuarios;
      private String nombres;
      private String apellidos;
      private String areaDeTrabajo;
@@ -19,12 +19,7 @@ public class Usuarios  implements java.io.Serializable {
     public Usuarios() {
     }
 
-	
-    public Usuarios(int idUsuarios) {
-        this.idUsuarios = idUsuarios;
-    }
-    public Usuarios(int idUsuarios, String nombres, String apellidos, String areaDeTrabajo, String correo, String password) {
-       this.idUsuarios = idUsuarios;
+    public Usuarios(String nombres, String apellidos, String areaDeTrabajo, String correo, String password) {
        this.nombres = nombres;
        this.apellidos = apellidos;
        this.areaDeTrabajo = areaDeTrabajo;
@@ -32,11 +27,11 @@ public class Usuarios  implements java.io.Serializable {
        this.password = password;
     }
    
-    public int getIdUsuarios() {
+    public Integer getIdUsuarios() {
         return this.idUsuarios;
     }
     
-    public void setIdUsuarios(int idUsuarios) {
+    public void setIdUsuarios(Integer idUsuarios) {
         this.idUsuarios = idUsuarios;
     }
     public String getNombres() {

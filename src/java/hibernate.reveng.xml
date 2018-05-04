@@ -41,5 +41,5 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="usuariosdb"/>
-  <table-filter match-name="usuarios"/>
+  <table-filter match-name="Usuarios"/>
 </hibernate-reverse-engineering>
