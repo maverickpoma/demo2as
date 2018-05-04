@@ -68,7 +68,7 @@ public class UsuarioDAO {
         }
     }
     
-    public Usuarios findAlumnoByID(int idUsuario){
+    public Usuarios findUsuarioByID(int idUsuario){
         Usuarios usuario = null;
         Transaction trns = null;
         Session session = NewHibernateUtil.getSessionFactory().openSession();
